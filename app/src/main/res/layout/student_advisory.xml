@@ -1,0 +1,184 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/colorPrimary">
+
+    <com.github.lzyzsd.circleprogress.DonutProgress
+        android:id="@+id/dpCompletionStatus"
+        android:layout_width="150dp"
+        android:layout_height="150dp"
+        android:layout_marginBottom="24dp"
+        android:layout_marginLeft="8dp"
+        android:layout_marginRight="8dp"
+        android:layout_marginTop="8dp"
+        app:donut_circle_starting_degree="270"
+        app:donut_finished_color="@color/colorAccent"
+        app:donut_progress="0"
+        app:donut_text="0%"
+        app:donut_text_color="@android:color/black"
+        app:layout_constraintBottom_toTopOf="@+id/tv_CoreCurriculum"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tv_CompletionStatus"
+        app:layout_constraintVertical_bias="1.0" />
+
+    <ProgressBar
+        android:id="@+id/pb_UpperDivision"
+        style="?android:attr/progressBarStyleHorizontal"
+        android:layout_width="238dp"
+        android:layout_height="36dp"
+        android:layout_marginBottom="8dp"
+        android:layout_marginLeft="8dp"
+        android:layout_marginRight="8dp"
+        android:progress="0"
+        android:progressBackgroundTint="@android:color/black"
+        app:layout_constraintBottom_toTopOf="@+id/tv_SupportCourses"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent" />
+
+    <ProgressBar
+        android:id="@+id/pb_SupportCourses"
+        style="?android:attr/progressBarStyleHorizontal"
+        android:layout_width="238dp"
+        android:layout_height="36dp"
+        android:layout_marginBottom="24dp"
+        android:layout_marginLeft="8dp"
+        android:layout_marginRight="8dp"
+        android:progress="0"
+        android:progressBackgroundTint="@android:color/black"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent" />
+
+    <ProgressBar
+        android:id="@+id/pb_LowerDivision"
+        style="?android:attr/progressBarStyleHorizontal"
+        android:layout_width="238dp"
+        android:layout_height="36dp"
+        android:layout_marginBottom="8dp"
+        android:layout_marginLeft="8dp"
+        android:layout_marginRight="8dp"
+        android:progress="0"
+        android:progressBackgroundTint="@android:color/black"
+        app:layout_constraintBottom_toTopOf="@+id/tv_UpperDivision"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent" />
+
+    <ProgressBar
+        android:id="@+id/pb_CoreCurriculum"
+        style="?android:attr/progressBarStyleHorizontal"
+        android:layout_width="238dp"
+        android:layout_height="36dp"
+        android:layout_marginBottom="8dp"
+        android:layout_marginLeft="8dp"
+        android:layout_marginRight="8dp"
+        android:progress="0"
+        android:progressBackgroundTint="@android:color/black"
+        app:layout_constraintBottom_toTopOf="@+id/tv_DegreeCore"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent" />
+
+    <ProgressBar
+        android:id="@+id/pb_DegreeCore"
+        style="?android:attr/progressBarStyleHorizontal"
+        android:layout_width="238dp"
+        android:layout_height="36dp"
+        android:layout_marginBottom="8dp"
+        android:layout_marginLeft="8dp"
+        android:layout_marginRight="8dp"
+        android:progress="0"
+        android:progressBackgroundTint="@android:color/black"
+        app:layout_constraintBottom_toTopOf="@+id/tv_LowerDivision"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent" />
+
+    <TextView
+        android:id="@+id/tv_CoreCurriculum"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="-1dp"
+        android:text="Core Curriculum (0%)"
+        android:textColor="@android:color/black"
+        app:layout_constraintBottom_toTopOf="@+id/pb_CoreCurriculum"
+        app:layout_constraintLeft_toLeftOf="@+id/pb_CoreCurriculum" />
+
+    <TextView
+        android:id="@+id/tv_DegreeCore"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="[Degree Plan], Core (0%)"
+        android:textColor="@android:color/black"
+        app:layout_constraintBottom_toTopOf="@+id/pb_DegreeCore"
+        app:layout_constraintLeft_toLeftOf="@+id/pb_DegreeCore" />
+
+    <TextView
+        android:id="@+id/tv_LowerDivision"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="-1dp"
+        android:text="[Degree Plan], Lower Division (0%)"
+        android:textColor="@android:color/black"
+        app:layout_constraintBottom_toTopOf="@+id/pb_LowerDivision"
+        app:layout_constraintLeft_toLeftOf="@+id/pb_LowerDivision" />
+
+    <TextView
+        android:id="@+id/tv_UpperDivision"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="2dp"
+        android:text="[Deegree Plan], Upper Division (0%)"
+        android:textColor="@android:color/black"
+        app:layout_constraintBottom_toTopOf="@+id/pb_UpperDivision"
+        app:layout_constraintLeft_toLeftOf="@+id/pb_UpperDivision" />
+
+    <TextView
+        android:id="@+id/tv_SupportCourses"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="-1dp"
+        android:text="[Degree Plan], Support Courses (0%)"
+        android:textColor="@android:color/black"
+        app:layout_constraintBottom_toTopOf="@+id/pb_SupportCourses"
+        app:layout_constraintLeft_toLeftOf="@+id/pb_SupportCourses" />
+
+    <ImageView
+        android:id="@+id/imageView2"
+        android:layout_width="117dp"
+        android:layout_height="108dp"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/icon" />
+
+    <Switch
+        android:id="@+id/switch1"
+        android:layout_width="144dp"
+        android:layout_height="47dp"
+        android:checked="true"
+        android:shadowColor="@android:color/black"
+        android:text="@string/view_switch"
+        android:textOn="@string/infographic"
+        android:textSize="17sp"
+        android:layout_marginLeft="8dp"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        android:layout_marginTop="0dp" />
+
+    <TextView
+        android:id="@+id/tv_CompletionStatus"
+        android:layout_width="167dp"
+        android:layout_height="72dp"
+        android:layout_marginLeft="8dp"
+        android:layout_marginTop="100dp"
+        android:text="Completion Status\n  xx/xx Hrs"
+        android:textColor="@android:color/black"
+        android:textSize="20sp"
+        app:layout_constraintHorizontal_bias="0.583"
+        app:layout_constraintLeft_toLeftOf="@+id/dpCompletionStatus"
+        app:layout_constraintRight_toRightOf="@+id/dpCompletionStatus"
+        app:layout_constraintTop_toTopOf="parent" />
+
+</android.support.constraint.ConstraintLayout>

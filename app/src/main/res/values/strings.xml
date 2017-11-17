@@ -1,0 +1,15 @@
+<resources>
+    <string name="app_name">A_charm</string>
+    <string name="action_settings">Settings</string>
+    <string name="add_amount">+</string>
+    <string name="forgot_password"><a href="http://www.uttyler.edu/ccs/email.php">Forgot Password</a></string>
+    <string name="view_switch">Infrographic</string>
+    <string name="core">Core Curriculum </string>
+    <string name="degreeCore">[Degree Plan], Core  </string>
+    <string name="lowerDivision">Lower Division  </string>
+    <string name="upperDivision">Upper Division  </string>
+    <string name="supportCourses">Support Courses  </string>
+    <string name="infographic">Infographic</string>
+    <string name="patriot_e_mail">Patriot E-mail</string>
+    <string name="log_in">Log-In</string>
+</resources>
