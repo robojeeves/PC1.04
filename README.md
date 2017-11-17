@@ -1,4 +1,4 @@
-# Patriot Checkpoint V1.03
+# Patriot Checkpoint V1.04
 
 # content_main.XML 
 This is the main log-in screen. Currently it accepts any email ending in @patriots.uttyler.edu and any password.
