@@ -24,22 +24,29 @@ import java.net.URLEncoder;
  * Created by lwu on 11/10/2017.
  */
 
+
 public class DBConnector extends AsyncTask<String,Void,String> {
+    public static String LOGIN_FILE = "login.php";
+    public static String COMPLETE_FILE = "getcomplete.php";
+    public static String DEGREE_PLAN_FILE = "getdegreeplan.php";
     Context context;
     AlertDialog alertDialog;
+    private String email;
+    private String password;
+    private String phpFile;
     DBConnector (Context ctx) {
         context = ctx;
     }
     @Override
     protected String doInBackground(String... params) {
-        String type = params[0];
+        phpFile = params[0];
+        String result="";
         // DO NOT CHANGE cosc5384.us
         // replace yourTeamUsername
-        String login_url = "http://cosc5384.us/teamthree/getdegreeplan.php";
-        if(type.equals("login")) {
+        String login_url = "http://cosc5384.us/teamthree/"+phpFile;
             try {
-                String email = params[1];
-                String password = params[2];
+                email = params[1];
+                password = params[2];
                 URL url = new URL(login_url);
                 HttpURLConnection httpURLConnection = (HttpURLConnection)url.openConnection();
                 httpURLConnection.setRequestMethod("POST");
@@ -55,7 +62,6 @@ public class DBConnector extends AsyncTask<String,Void,String> {
                 outputStream.close();
                 InputStream inputStream = httpURLConnection.getInputStream();
                 BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(inputStream,"iso-8859-1"));
-                String result="";
                 String line="";
                 while((line = bufferedReader.readLine())!= null) {
                     result += line;
@@ -69,9 +75,9 @@ public class DBConnector extends AsyncTask<String,Void,String> {
             } catch (IOException e) {
                 e.printStackTrace();
             }
-        }
         return null;
     }
+
 
     @Override
     protected void onPreExecute() {
@@ -86,8 +92,9 @@ public class DBConnector extends AsyncTask<String,Void,String> {
         //alertDialog.show();
         //if connection error occurs, throw an error message
 
-            Log.i("abcxyz", result);
-            if (result.length() < 8) {
+//            Log.i("abcxyz", result);
+        if(phpFile.contains(LOGIN_FILE)) {
+            if (!result.contains("true")) {
                 Toast toast = Toast.makeText(context, "Login Error", Toast.LENGTH_SHORT);
                 toast.show();
             }
@@ -96,8 +103,13 @@ public class DBConnector extends AsyncTask<String,Void,String> {
             else {
                 Toast toast = Toast.makeText(context, "Login Successfully", Toast.LENGTH_SHORT);
                 toast.show();
-                context.startActivity(new Intent(context, StudentAdvising.class));
+                Intent intent = new Intent(context, StudentAdvising.class);
+                intent.putExtra("email", email);
+                intent.putExtra("password", password);
+                context.startActivity(intent);
             }
+        }
+
 
 
     }

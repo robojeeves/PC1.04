@@ -57,7 +57,7 @@ public class MainActivity extends AppCompatActivity {
                 //make a connection, if valid user/password then open Advisory page
                 String type = "login";
                 DBConnector dbConnector = new DBConnector(MainActivity.this);
-                dbConnector.execute(type, email, password);
+                dbConnector.execute(DBConnector.LOGIN_FILE, email, password);
 
             }
         });

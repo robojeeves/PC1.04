@@ -2,22 +2,32 @@ package com.example.roboj.a_charm;
 
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.widget.ProgressBar;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.github.lzyzsd.circleprogress.DonutProgress;
+
+import java.util.concurrent.ExecutionException;
 
 public class StudentAdvising extends AppCompatActivity {
 
     private DonutProgress dp_completionStatus;
     private TextView tv_completionStatus, tv_core, tv_degreeCore, tv_lowerDivision, tv_upperDivision, tv_supportCourses;
     private ProgressBar pb_core, pb_degreeCore, pb_lowerDivision, pb_upperDivision, pb_supportCourses;
+    private Bundle bundle;
+    private String email, password;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.student_advisory);
 
-        setContentView(R.layout.student_advisory);
+        bundle = getIntent().getExtras();
+        email = bundle.getString("email");
+        password = bundle.getString("password");
+
+        fetchCourses();
 
         // Create references to all progress bars
         dp_completionStatus = (DonutProgress) findViewById(R.id.dpCompletionStatus );
@@ -63,5 +73,28 @@ public class StudentAdvising extends AppCompatActivity {
         tv_supportCourses.append(" " + Integer.toString(supportCourses) + "%");
 
 
+    }
+
+    private void fetchCourses()
+    {
+        DBConnector dbConnector = new DBConnector(this);
+        String data = null;
+        try {
+            data = dbConnector.execute(DBConnector.DEGREE_PLAN_FILE, email, password).get();
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        } catch (ExecutionException e) {
+            e.printStackTrace();
+        }
+        Log.e("The raw data: ", data);
+        String classesrequired[] =  data.split("~RECORD~");
+        String classinfo[][] = new String[classesrequired.length][];
+        for(int x = 0; x < classesrequired.length; x++)
+        {
+            classinfo[x] = classesrequired[x].split("~FIELD~");
+            for (int i = 0; i < classinfo[x].length; i++) {
+                Log.e(classinfo[x][0], classinfo[x][i]);
+            }
+        }
     }
 }
