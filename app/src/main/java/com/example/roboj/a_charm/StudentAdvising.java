@@ -21,7 +21,7 @@ public class StudentAdvising extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.student_advisory);
+        setContentView(R.layout.student_advisory_scroll_view);
 
         bundle = getIntent().getExtras();
         email = bundle.getString("email");
