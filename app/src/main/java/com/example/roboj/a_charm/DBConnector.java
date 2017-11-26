@@ -26,9 +26,11 @@ import java.net.URLEncoder;
 
 
 public class DBConnector extends AsyncTask<String,Void,String> {
-    public static String LOGIN_FILE = "login.php";
-    public static String COMPLETE_FILE = "getcomplete.php";
-    public static String DEGREE_PLAN_FILE = "getdegreeplan.php";
+    public static final String LOGIN_FILE = "login.php";
+    public static final String COMPLETE_FILE = "getcomplete.php";
+    public static final String DEGREE_PLAN_FILE = "getdegreeplan.php";
+    public static final String RECORD_DIVIDER = "~RECORD~";
+    public static final String FIELD_DIVIDER = "~FIELD~";
     Context context;
     AlertDialog alertDialog;
     private String email;
@@ -44,37 +46,37 @@ public class DBConnector extends AsyncTask<String,Void,String> {
         // DO NOT CHANGE cosc5384.us
         // replace yourTeamUsername
         String login_url = "http://cosc5384.us/teamthree/"+phpFile;
-            try {
-                email = params[1];
-                password = params[2];
-                URL url = new URL(login_url);
-                HttpURLConnection httpURLConnection = (HttpURLConnection)url.openConnection();
-                httpURLConnection.setRequestMethod("POST");
-                httpURLConnection.setDoOutput(true);
-                httpURLConnection.setDoInput(true);
-                OutputStream outputStream = httpURLConnection.getOutputStream();
-                BufferedWriter bufferedWriter = new BufferedWriter(new OutputStreamWriter(outputStream, "UTF-8"));
-                String post_data = URLEncoder.encode("email","UTF-8")+"="+URLEncoder.encode(email,"UTF-8")+"&"
-                        +URLEncoder.encode("password","UTF-8")+"="+URLEncoder.encode(password,"UTF-8");
-                bufferedWriter.write(post_data);
-                bufferedWriter.flush();
-                bufferedWriter.close();
-                outputStream.close();
-                InputStream inputStream = httpURLConnection.getInputStream();
-                BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(inputStream,"iso-8859-1"));
-                String line="";
-                while((line = bufferedReader.readLine())!= null) {
-                    result += line;
-                }
-                bufferedReader.close();
-                inputStream.close();
-                httpURLConnection.disconnect();
-                return result;
-            } catch (MalformedURLException e) {
-                e.printStackTrace();
-            } catch (IOException e) {
-                e.printStackTrace();
+        try {
+            email = params[1];
+            password = params[2];
+            URL url = new URL(login_url);
+            HttpURLConnection httpURLConnection = (HttpURLConnection)url.openConnection();
+            httpURLConnection.setRequestMethod("POST");
+            httpURLConnection.setDoOutput(true);
+            httpURLConnection.setDoInput(true);
+            OutputStream outputStream = httpURLConnection.getOutputStream();
+            BufferedWriter bufferedWriter = new BufferedWriter(new OutputStreamWriter(outputStream, "UTF-8"));
+            String post_data = URLEncoder.encode("email","UTF-8")+"="+URLEncoder.encode(email,"UTF-8")+"&"
+                    +URLEncoder.encode("password","UTF-8")+"="+URLEncoder.encode(password,"UTF-8");
+            bufferedWriter.write(post_data);
+            bufferedWriter.flush();
+            bufferedWriter.close();
+            outputStream.close();
+            InputStream inputStream = httpURLConnection.getInputStream();
+            BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(inputStream,"iso-8859-1"));
+            String line="";
+            while((line = bufferedReader.readLine())!= null) {
+                result += line;
             }
+            bufferedReader.close();
+            inputStream.close();
+            httpURLConnection.disconnect();
+            return result;
+        } catch (MalformedURLException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
         return null;
     }
 

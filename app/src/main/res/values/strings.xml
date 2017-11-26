@@ -12,4 +12,6 @@
     <string name="infographic">Infographic</string>
     <string name="patriot_e_mail">Patriot E-mail</string>
     <string name="log_in">Log-In</string>
+    <string name="alertbox_yes">Yes</string>
+    <string name="alertbox_no">No</string>
 </resources>
