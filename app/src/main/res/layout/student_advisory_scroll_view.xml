@@ -1,247 +1,176 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.design.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/coordinatorLayout"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <android.support.design.widget.AppBarLayout
-        android:id="@+id/appbar"
-        android:layout_width="match_parent"
-        android:layout_height="100dp">
-
-        <android.support.design.widget.CollapsingToolbarLayout
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            app:contentScrim="?attr/colorPrimary"
-            app:layout_scrollFlags="scroll|exitUntilCollapsed"
-            app:toolbarId="@+id/toolbar">
-
-            <android.support.v7.widget.Toolbar
-                android:id="@+id/toolbar"
-                android:layout_width="match_parent"
-                android:layout_height="?attr/actionBarSize"></android.support.v7.widget.Toolbar>
-
-            <ImageView
-                android:id="@+id/imageView4"
-                android:layout_width="75dp"
-                android:layout_height="50dp"
-                android:layout_gravity="bottom|right"
-                app:srcCompat="@drawable/icon" />
-
-            <TextView
-                android:id="@+id/textView2"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_gravity="bottom"
-                android:layout_marginBottom="10dp"
-                android:gravity="bottom|left"
-                android:text="@string/app_name"
-                android:textColor="@color/colorAccent"
-                android:textSize="24sp" />
-
-            <Switch
-                android:id="@+id/switch1"
-                android:layout_width="match_parent"
-                android:layout_height="47dp"
-                android:layout_marginLeft="8dp"
-                android:layout_marginTop="0dp"
-                android:checked="true"
-                android:shadowColor="@android:color/black"
-                android:text="@string/view_switch"
-                android:textAlignment="viewEnd"
-                android:layout_gravity="end"
-                android:textOn="@string/infographic"
-                android:textSize="17sp"
-                app:layout_constraintLeft_toLeftOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
-
-        </android.support.design.widget.CollapsingToolbarLayout>
-    </android.support.design.widget.AppBarLayout>
+    <include
+        layout = "@layout/app_bar"
+        android:id = "@+id/app_bar"
+        ></include>
 
     <android.support.v4.widget.NestedScrollView
+        android:id="@+id/nestedScrollView"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        app:layout_behavior="android.support.design.widget.AppBarLayout$ScrollingViewBehavior">
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        app:layout_behavior="android.support.design.widget.AppBarLayout$ScrollingViewBehavior"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/app_bar">
 
         <android.support.constraint.ConstraintLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:background="@color/colorPrimary">
 
-            <ScrollView
-                android:layout_width="match_parent"
-                android:layout_height="match_parent">
 
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:orientation="vertical">
+            <TextView
+                android:id="@+id/tv_CompletionStatus"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="32dp"
+                android:gravity="center"
+                android:text="Completion Status\n  xx/xx Hrs"
+                android:textColor="@android:color/black"
+                android:textSize="20sp"
+                app:layout_constraintHorizontal_bias="0.583"
+                app:layout_constraintLeft_toLeftOf="@+id/dpCompletionStatus"
+                app:layout_constraintRight_toRightOf="@+id/dpCompletionStatus"
+                app:layout_constraintTop_toTopOf="parent" />
 
-                    <TextView
-                        android:id="@+id/tv_CompletionStatus"
-                        android:layout_width="match_parent"
-                        android:layout_height="72dp"
-                        android:layout_marginLeft="8dp"
-                        android:layout_marginTop="8dp"
-                        android:gravity="center"
-                        android:text="Completion Status\n  xx/xx Hrs"
-                        android:textColor="@android:color/black"
-                        android:textSize="20sp"
-                        app:layout_constraintHorizontal_bias="0.583"
-                        app:layout_constraintLeft_toLeftOf="@+id/dpCompletionStatus"
-                        app:layout_constraintRight_toRightOf="@+id/dpCompletionStatus"
-                        app:layout_constraintTop_toTopOf="parent" />
+            <com.github.lzyzsd.circleprogress.DonutProgress
+                android:id="@+id/dpCompletionStatus"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="32dp"
+                app:donut_circle_starting_degree="270"
+                app:donut_finished_color="@color/colorAccent"
+                app:donut_progress="0"
+                app:donut_text="0%"
+                app:donut_text_color="@android:color/black"
+                app:layout_constraintBottom_toTopOf="@+id/tv_CoreCurriculum"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/tv_CompletionStatus"
+                app:layout_constraintVertical_bias="1.0" />
 
-                    <com.github.lzyzsd.circleprogress.DonutProgress
-                        android:id="@+id/dpCompletionStatus"
-                        android:layout_width="150dp"
-                        android:layout_height="150dp"
-                        android:layout_gravity="center_horizontal"
-                        android:layout_marginBottom="24dp"
-                        android:layout_marginLeft="8dp"
-                        android:layout_marginRight="8dp"
-                        android:layout_marginTop="8dp"
-                        app:donut_circle_starting_degree="270"
-                        app:donut_finished_color="@color/colorAccent"
-                        app:donut_progress="0"
-                        app:donut_text="0%"
-                        app:donut_text_color="@android:color/black"
-                        app:layout_constraintBottom_toTopOf="@+id/tv_CoreCurriculum"
-                        app:layout_constraintLeft_toLeftOf="parent"
-                        app:layout_constraintRight_toRightOf="parent"
-                        app:layout_constraintTop_toBottomOf="@+id/tv_CompletionStatus"
-                        app:layout_constraintVertical_bias="1.0" />
+            <TextView
+                android:id="@+id/tv_CoreCurriculum"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:text="Core Curriculum (0%)"
+                android:textColor="@android:color/black"
+                app:layout_constraintBottom_toTopOf="@+id/pb_CoreCurriculum"
+                app:layout_constraintStart_toStartOf="parent" />
 
-                    <TextView
-                        android:id="@+id/tv_CoreCurriculum"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_marginBottom="-1dp"
-                        android:text="Core Curriculum (0%)"
-                        android:textColor="@android:color/black"
-                        app:layout_constraintBottom_toTopOf="@+id/pb_CoreCurriculum"
-                        app:layout_constraintLeft_toLeftOf="@+id/pb_CoreCurriculum" />
+            <ProgressBar
+                android:id="@+id/pb_CoreCurriculum"
+                style="?android:attr/progressBarStyleHorizontal"
+                android:layout_width="300dp"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="16dp"
+                android:progress="0"
+                android:progressBackgroundTint="@android:color/black"
+                app:layout_constraintBottom_toTopOf="@+id/tv_DegreeCore"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintStart_toStartOf="@+id/tv_CoreCurriculum" />
 
-                    <ProgressBar
-                        android:id="@+id/pb_CoreCurriculum"
-                        style="?android:attr/progressBarStyleHorizontal"
-                        android:layout_width="match_parent"
-                        android:layout_height="36dp"
-                        android:layout_marginBottom="8dp"
-                        android:layout_marginLeft="8dp"
-                        android:layout_marginRight="8dp"
-                        android:progress="0"
-                        android:progressBackgroundTint="@android:color/black"
-                        app:layout_constraintBottom_toTopOf="@+id/tv_DegreeCore"
-                        app:layout_constraintLeft_toLeftOf="parent"
-                        app:layout_constraintRight_toRightOf="parent" />
+            <TextView
+                android:id="@+id/tv_DegreeCore"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:text="[Degree Plan], Core (0%)"
+                android:textColor="@android:color/black"
+                app:layout_constraintBottom_toTopOf="@+id/pb_DegreeCore"
+                app:layout_constraintStart_toStartOf="parent" />
 
-                    <TextView
-                        android:id="@+id/tv_DegreeCore"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:text="[Degree Plan], Core (0%)"
-                        android:textColor="@android:color/black"
-                        app:layout_constraintBottom_toTopOf="@+id/pb_DegreeCore"
-                        app:layout_constraintLeft_toLeftOf="@+id/pb_DegreeCore" />
+            <ProgressBar
+                android:id="@+id/pb_DegreeCore"
+                style="?android:attr/progressBarStyleHorizontal"
+                android:layout_width="300dp"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="16dp"
+                android:progress="0"
+                android:progressBackgroundTint="@android:color/black"
+                app:layout_constraintBottom_toTopOf="@+id/tv_LowerDivision"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintStart_toStartOf="@+id/tv_DegreeCore" />
 
-                    <ProgressBar
-                        android:id="@+id/pb_DegreeCore"
-                        style="?android:attr/progressBarStyleHorizontal"
-                        android:layout_width="match_parent"
-                        android:layout_height="36dp"
-                        android:layout_marginBottom="8dp"
-                        android:layout_marginLeft="8dp"
-                        android:layout_marginRight="8dp"
-                        android:progress="0"
-                        android:progressBackgroundTint="@android:color/black"
-                        app:layout_constraintBottom_toTopOf="@+id/tv_LowerDivision"
-                        app:layout_constraintLeft_toLeftOf="parent"
-                        app:layout_constraintRight_toRightOf="parent" />
+            <TextView
+                android:id="@+id/tv_UpperDivision"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:text="[Deegree Plan], Upper Division (0%)"
+                android:textColor="@android:color/black"
+                app:layout_constraintBottom_toTopOf="@+id/pb_UpperDivision"
+                app:layout_constraintStart_toStartOf="parent" />
 
-                    <TextView
-                        android:id="@+id/tv_UpperDivision"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_marginBottom="2dp"
-                        android:text="[Deegree Plan], Upper Division (0%)"
-                        android:textColor="@android:color/black"
-                        app:layout_constraintBottom_toTopOf="@+id/pb_UpperDivision"
-                        app:layout_constraintLeft_toLeftOf="@+id/pb_UpperDivision" />
+            <ProgressBar
+                android:id="@+id/pb_UpperDivision"
+                style="?android:attr/progressBarStyleHorizontal"
+                android:layout_width="300dp"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="16dp"
+                android:progress="0"
+                android:progressBackgroundTint="@android:color/black"
+                app:layout_constraintBottom_toTopOf="@+id/tv_SupportCourses"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintStart_toStartOf="@+id/tv_UpperDivision" />
 
-                    <ProgressBar
-                        android:id="@+id/pb_UpperDivision"
-                        style="?android:attr/progressBarStyleHorizontal"
-                        android:layout_width="match_parent"
-                        android:layout_height="36dp"
-                        android:layout_marginBottom="8dp"
-                        android:layout_marginLeft="8dp"
-                        android:layout_marginRight="8dp"
-                        android:progress="0"
-                        android:progressBackgroundTint="@android:color/black"
-                        app:layout_constraintBottom_toTopOf="@+id/tv_SupportCourses"
-                        app:layout_constraintLeft_toLeftOf="parent"
-                        app:layout_constraintRight_toRightOf="parent" />
+            <TextView
+                android:id="@+id/tv_LowerDivision"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:text="[Degree Plan], Lower Division (0%)"
+                android:textColor="@android:color/black"
+                app:layout_constraintBottom_toTopOf="@+id/pb_LowerDivision"
+                app:layout_constraintStart_toStartOf="parent" />
 
-                    <TextView
-                        android:id="@+id/tv_LowerDivision"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_marginBottom="-1dp"
-                        android:text="[Degree Plan], Lower Division (0%)"
-                        android:textColor="@android:color/black"
-                        app:layout_constraintBottom_toTopOf="@+id/pb_LowerDivision"
-                        app:layout_constraintLeft_toLeftOf="@+id/pb_LowerDivision" />
+            <ProgressBar
+                android:id="@+id/pb_LowerDivision"
+                style="?android:attr/progressBarStyleHorizontal"
+                android:layout_width="300dp"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="16dp"
+                android:progress="0"
+                android:progressBackgroundTint="@android:color/black"
+                app:layout_constraintBottom_toTopOf="@+id/tv_UpperDivision"
+                app:layout_constraintStart_toStartOf="@+id/tv_LowerDivision" />
 
-                    <ProgressBar
-                        android:id="@+id/pb_LowerDivision"
-                        style="?android:attr/progressBarStyleHorizontal"
-                        android:layout_width="match_parent"
-                        android:layout_height="36dp"
-                        android:layout_marginBottom="8dp"
-                        android:layout_marginLeft="8dp"
-                        android:layout_marginRight="8dp"
-                        android:progress="0"
-                        android:progressBackgroundTint="@android:color/black"
-                        app:layout_constraintBottom_toTopOf="@+id/tv_UpperDivision"
-                        app:layout_constraintLeft_toLeftOf="parent"
-                        app:layout_constraintRight_toRightOf="parent" />
+            <TextView
+                android:id="@+id/tv_SupportCourses"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:text="[Degree Plan], Support Courses (0%)"
+                android:textColor="@android:color/black"
+                app:layout_constraintBottom_toTopOf="@+id/pb_SupportCourses"
+                app:layout_constraintStart_toStartOf="parent" />
 
-                    <TextView
-                        android:id="@+id/tv_SupportCourses"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_marginBottom="-1dp"
-                        android:text="[Degree Plan], Support Courses (0%)"
-                        android:textColor="@android:color/black"
-                        app:layout_constraintBottom_toTopOf="@+id/pb_SupportCourses"
-                        app:layout_constraintLeft_toLeftOf="@+id/pb_SupportCourses" />
+            <ProgressBar
+                android:id="@+id/pb_SupportCourses"
+                style="?android:attr/progressBarStyleHorizontal"
+                android:layout_width="300dp"
+                android:layout_height="wrap_content"
+                android:progress="0"
+                android:progressBackgroundTint="@android:color/black"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintStart_toStartOf="@+id/tv_SupportCourses" />
 
-                    <ProgressBar
-                        android:id="@+id/pb_SupportCourses"
-                        style="?android:attr/progressBarStyleHorizontal"
-                        android:layout_width="match_parent"
-                        android:layout_height="36dp"
-                        android:layout_marginBottom="24dp"
-                        android:layout_marginLeft="8dp"
-                        android:layout_marginRight="8dp"
-                        android:progress="0"
-                        android:progressBackgroundTint="@android:color/black"
-                        app:layout_constraintBottom_toBottomOf="parent"
-                        app:layout_constraintLeft_toLeftOf="parent"
-                        app:layout_constraintRight_toRightOf="parent" />
-
-                    <TextView
-                        android:id="@+id/textView3"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:text=" " />
-
-                </LinearLayout>
-            </ScrollView>
+            <TextView
+                android:id="@+id/textView3"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text=" " />
 
 
         </android.support.constraint.ConstraintLayout>
     </android.support.v4.widget.NestedScrollView>
-</android.support.design.widget.CoordinatorLayout>
+</android.support.constraint.ConstraintLayout>

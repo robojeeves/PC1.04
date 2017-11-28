@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.v7.widget.Toolbar xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    app:theme="@style/CustomPopupStyle">
+
+    <ImageView
+        android:id="@+id/imageView4"
+        android:layout_width="75dp"
+        android:layout_height="50dp"
+        android:layout_gravity="bottom|left"
+        app:srcCompat="@drawable/icon" />
+    <TextView
+        android:id="@+id/tv_viewTitle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:textSize = "20sp"
+        android:textColor="@android:color/black"/>
+
+
+</android.support.v7.widget.Toolbar>

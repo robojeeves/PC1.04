@@ -14,4 +14,8 @@
     <string name="log_in">Log-In</string>
     <string name="alertbox_yes">Yes</string>
     <string name="alertbox_no">No</string>
+    <string name="view_mode">View Mode</string>
+    <string name="completed_courses">Completed Courses</string>
+    <string name="remaining_courses">Remaining Courses</string>
+    <string name="overview">Overview</string>
 </resources>
