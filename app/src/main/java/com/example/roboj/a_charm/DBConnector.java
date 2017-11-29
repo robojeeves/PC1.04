@@ -4,8 +4,11 @@ package com.example.roboj.a_charm;
 import android.app.AlertDialog;
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.Color;
 import android.os.AsyncTask;
 import android.util.Log;
+import android.view.View;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import java.io.BufferedReader;
@@ -98,12 +101,28 @@ public class DBConnector extends AsyncTask<String,Void,String> {
         if(phpFile.contains(LOGIN_FILE)) {
             if (!result.contains("true")) {
                 Toast toast = Toast.makeText(context, "Login Error", Toast.LENGTH_SHORT);
+                View view = toast.getView();
+                view.setBackgroundResource(android.R.drawable.toast_frame);
+
+//Get the TextView for the toast message so you can customize
+                TextView toastMessage = (TextView) view.findViewById(android.R.id.message);
+
+//Set background color for the text.
+                toastMessage.setBackgroundColor((Color.parseColor("#646464")));
                 toast.show();
             }
 
             //if connection succeeds, move to your next activity
             else {
                 Toast toast = Toast.makeText(context, "Login Successfully", Toast.LENGTH_SHORT);
+                View view = toast.getView();
+                view.setBackgroundResource(android.R.drawable.toast_frame);
+
+//Get the TextView for the toast message so you can customize
+                TextView toastMessage = (TextView) view.findViewById(android.R.id.message);
+
+//Set background color for the text.
+                toastMessage.setBackgroundColor((Color.parseColor("#646464")));
                 toast.show();
                 Intent intent = new Intent(context, StudentAdvising.class);
                 intent.putExtra("email", email);

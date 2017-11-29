@@ -113,7 +113,7 @@ public class StudentAdvising extends AppCompatActivity {
         String [] takenArray = takenInfo.toArray(new String[takenInfo.size()]);
 
         ArrayAdapter<String> adapter =
-                new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, takenArray);
+                new ArrayAdapter<String>(this, R.layout.simple_listview, takenArray);
         ListView listView = (ListView) findViewById(R.id.lv_completed_courses);
         listView.setAdapter(adapter);
 
