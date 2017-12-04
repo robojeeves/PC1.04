@@ -1,8 +1,15 @@
 # Patriot Checkpoint V1.04
 
 # content_main.XML 
-This is the main log-in screen. Currently it accepts any email ending in @patriots.uttyler.edu and any password.
+This is the main log-in screen.
 
-# student_advisory.XML
-This is the course progress display screen, the layout is a bit of a mess right now, and it isn't connected to any code,
-just a mock-up to get a feel for the look.
+# student_advisory_scroll_view.XML
+This is the course progress overview display screen
+
+# required_course_list.XML
+# completed_course_list.XML
+These Screens display the courses required/completed in a scrollable list
+
+# app_bar.XML
+Layout for the top navigation bar
+
