@@ -29,6 +29,11 @@ public class StudentAdvising extends AppCompatActivity {
     private String[][] completeCourseInfo;
     private String[][] degreePlanInfo;
     private ArrayList<String> notYetTakenInfo, takenInfo;
+
+    //For splitting the notYetTakenInfo and takenInfo arrays into different sections
+    private ArrayList<String> majReq, lowerDivReq, upperDivReq, coreReq, supportReq;
+    private ArrayList<String> majComp, lowerDivComp, upperDivComp, coreComp, supportComp;
+
     private int creditsEarned, creditsRequired = 120;
     private double majorRatio, coreRatio, upperRatio, lowerRatio, supportRatio;
     private double overallRatio;
@@ -56,8 +61,8 @@ public class StudentAdvising extends AppCompatActivity {
         getSupportActionBar().setDisplayShowTitleEnabled(false);
         TextView tv_viewTitle = (TextView) findViewById(R.id.tv_viewTitle);
         tv_viewTitle.setText("Overview");
-       // toolbar.setTitle("");
-       // toolbar.setSubtitle("");
+        // toolbar.setTitle("");
+        // toolbar.setSubtitle("");
 
 
         // Create references to all progress bars
@@ -152,8 +157,8 @@ public class StudentAdvising extends AppCompatActivity {
         } catch (ExecutionException e) {
             e.printStackTrace();
         }
-        Log.e("The raw data: ", completeCoursesResult);
-        Log.e("The raw data: ", degreePlanResult);
+        //Log.e("The raw data: ", completeCoursesResult);
+        //Log.e("The raw data: ", degreePlanResult);
 
         // Put complete course info into array
         if (completeCoursesResult.contains(DBConnector.RECORD_DIVIDER))
@@ -214,6 +219,21 @@ public class StudentAdvising extends AppCompatActivity {
         // Checking complete courses loop
         notYetTakenInfo = new ArrayList<>();
         takenInfo = new ArrayList<>();
+
+        //To be used in the notYetTakenInfo array list
+        majReq = new ArrayList<>();
+        upperDivReq = new ArrayList<>();
+        lowerDivReq = new ArrayList<>();
+        coreReq = new ArrayList<>();
+        supportReq = new ArrayList<>();
+
+        //To be used in the takenInfo array list
+        majComp = new ArrayList<>();
+        upperDivComp = new ArrayList<>();
+        lowerDivComp = new ArrayList<>();
+        coreComp = new ArrayList<>();
+        supportComp = new ArrayList<>();
+
         if (completeCourseInfo != null && degreePlanInfo != null)
         {
             for (int j = 0; j < degreePlanInfo.length; j++)
@@ -242,11 +262,68 @@ public class StudentAdvising extends AppCompatActivity {
                         creditsCount += Double.parseDouble(degreePlanInfo[j][2]);
                     }
                 }
-                if (!taken)
-                    notYetTakenInfo.add(degreePlanInfo[j][0] + "     " + degreePlanInfo[j][1]);
-                else
-                    takenInfo.add(degreePlanInfo[j][0] + "     " + degreePlanInfo[j][1]);
+                if (!taken){
+                    //notYetTakenInfo.add(degreePlanInfo[j][0] + "     " + degreePlanInfo[j][1]);
+
+                    //Testing to see about about adding splits in requirement course screen
+                    if (degreePlanInfo[j][3].equalsIgnoreCase("RQ 1156"))
+                        majReq.add(degreePlanInfo[j][0] + "     " + degreePlanInfo[j][1]);
+                    else if (degreePlanInfo[j][3].equalsIgnoreCase("RQ 1157"))
+                        lowerDivReq.add(degreePlanInfo[j][0] + "     " + degreePlanInfo[j][1]);
+                    else if (degreePlanInfo[j][3].equalsIgnoreCase("RQ 1158"))
+                        upperDivReq.add(degreePlanInfo[j][0] + "     " + degreePlanInfo[j][1]);
+                    else if (degreePlanInfo[j][3].equalsIgnoreCase("RQ 1159") || degreePlanInfo[j][3].equalsIgnoreCase("RQ 1160"))
+                        coreReq.add(degreePlanInfo[j][0] + "     " + degreePlanInfo[j][1]);
+                    else if (degreePlanInfo[j][3].equalsIgnoreCase("RQ 1161") || degreePlanInfo[j][3].equalsIgnoreCase("RQ 1162"))
+                        supportReq.add(degreePlanInfo[j][0] + "     " + degreePlanInfo[j][1]);
+                }
+                else {
+                    //takenInfo.add(degreePlanInfo[j][0] + "     " + degreePlanInfo[j][1]);
+                    if (degreePlanInfo[j][3].equalsIgnoreCase("RQ 1156"))
+                        majComp.add(degreePlanInfo[j][0] + "     " + degreePlanInfo[j][1]);
+                    else if (degreePlanInfo[j][3].equalsIgnoreCase("RQ 1157"))
+                        lowerDivComp.add(degreePlanInfo[j][0] + "     " + degreePlanInfo[j][1]);
+                    else if (degreePlanInfo[j][3].equalsIgnoreCase("RQ 1158"))
+                        upperDivComp.add(degreePlanInfo[j][0] + "     " + degreePlanInfo[j][1]);
+                    else if (degreePlanInfo[j][3].equalsIgnoreCase("RQ 1159") || degreePlanInfo[j][3].equalsIgnoreCase("RQ 1160"))
+                        coreComp.add(degreePlanInfo[j][0] + "     " + degreePlanInfo[j][1]);
+                    else if (degreePlanInfo[j][3].equalsIgnoreCase("RQ 1161") || degreePlanInfo[j][3].equalsIgnoreCase("RQ 1162"))
+                        supportComp.add(degreePlanInfo[j][0] + "     " + degreePlanInfo[j][1]);
+                }
             }
+
+            //Adds the different sections to the required courses screen
+            notYetTakenInfo.add("MAJOR CLASSES");
+            notYetTakenInfo.addAll(majReq);
+            notYetTakenInfo.add("\nLOWER DIVISION CLASSES");
+            notYetTakenInfo.addAll(lowerDivReq);
+            notYetTakenInfo.add("\nUPPER DIVISION CLASSES");
+            notYetTakenInfo.addAll(upperDivReq);
+            notYetTakenInfo.add("\nCORE CLASSES");
+            notYetTakenInfo.addAll(coreReq);
+            notYetTakenInfo.add("\nSUPPORT CLASSES");
+            notYetTakenInfo.addAll(supportReq);
+            //Adds extra lines for better spacing at bottom of screen
+            notYetTakenInfo.add("");
+            notYetTakenInfo.add("");
+            notYetTakenInfo.add("");
+
+            //Adds the different sections to the completed courses screen
+            takenInfo.add("MAJOR CLASSES");
+            takenInfo.addAll(majComp);
+            takenInfo.add("\nLOWER DIVISION CLASSES");
+            takenInfo.addAll(lowerDivComp);
+            takenInfo.add("\nUPPER DIVISION CLASSES");
+            takenInfo.addAll(upperDivComp);
+            takenInfo.add("\nCORE CLASSES");
+            takenInfo.addAll(coreComp);
+            takenInfo.add("\nSUPPORT CLASSES");
+            takenInfo.addAll(supportComp);
+            //Adds extra lines for better spacing at bottom of screen
+            takenInfo.add("");
+            takenInfo.add("");
+            takenInfo.add("");
+
         }
 
         // Set credits strings
